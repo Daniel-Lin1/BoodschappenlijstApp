@@ -8,12 +8,15 @@ public class User {
 
 @Id @GeneratedValue
     private long id;
-    private String userName;
-    private ArrayList<String>Recipelist;
+    private String userName, email, password;
+    private ArrayList<String>recipeList;
 
 
-    public  User(String userName){
+    public  User(String userName, String email, String password, ArrayList<String> recipeList){
         this.userName = userName;
+        this.email = email;
+        this.password = password;
+        this.recipeList = recipeList;
     }
 
 }
