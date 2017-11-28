@@ -6,7 +6,6 @@
 GET     /                           controllers.Application.index
 
 GET     /account/login              controllers.AccountController.login
-POST    /account/login              controllers.AccountController.authenticate
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

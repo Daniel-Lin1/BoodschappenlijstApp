@@ -1,21 +1,10 @@
-@import play.data.Form
-@import b4.vertical.fieldConstructor
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
 
-@(form: Form[User])
-
-@shared.main("Inloggen") {
-  <div class="container">
-    <h1>Inloggen</h1>
-    @b4.form(routes.AccountController.authenticate()) {
-      <table>
-        <tr><p>Gebruikersnaam</p></tr>
-        <tr>@b4.text(form("userName"), 'label -> "Email", 'placeholder -> "Gebruikersnaam", 'required -> "required")</tr>
-        <tr><p>Email</p></tr>
-        <tr>@b4.text(form("email"), 'label -> "Email", 'placeholder -> "E-mailadres", 'required -> "required")</tr>
-        <tr><p>Wachtwoord</p></tr>
-        <tr>@b4.password(form("password"), 'label -> "Password", 'placeholder -> "Wachtwoord", 'required -> "required")</tr>
-        <tr>@b4.submit('class -> "btn btn-default") {Log in}</tr>
-      </table>
-    }
-  </div>
-}
+</body>
+</html>
