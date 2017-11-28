@@ -13,12 +13,21 @@ public class User {
     private String userName, email, password;
     private ArrayList<String>recipeList;
 
+    public User() {
 
-    public  User(String userName, String email, String password, ArrayList<String> recipeList){
+    }
+
+    public User(String userName, String email, String password, ArrayList<String> recipeList){
         this.userName = userName;
         this.email = email;
         this.password = password;
         this.recipeList = recipeList;
+    }
+
+    public User(String userName, String email, String password){
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
     }
 
 }

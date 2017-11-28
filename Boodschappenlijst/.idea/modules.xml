@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/boodschappenlijst.iml" filepath="$PROJECT_DIR$/boodschappenlijst.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/boodschappenlijst-build.iml" filepath="$PROJECT_DIR$/.idea/modules/boodschappenlijst-build.iml" />
     </modules>
   </component>
 </project>
