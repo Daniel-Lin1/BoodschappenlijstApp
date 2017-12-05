@@ -18,3 +18,8 @@ libraryDependencies ++= Seq(
 
 // https://mvnrepository.com/artifact/mysql/mysql-connector-java
 libraryDependencies += "mysql" % "mysql-connector-java" % "5.1.16"
+
+libraryDependencies ++= Seq(
+  javaJpa,
+  "org.hibernate" % "hibernate-entitymanager" % "5.1.0.Final" // replace by your jpa implementation
+)
