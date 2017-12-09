@@ -8,8 +8,7 @@ import java.util.ArrayList;
 @Entity
 @Table(name = "user")
 public class User {
-
-    @Id @GeneratedValue()
+    @Id @GeneratedValue
     @Column(name = "id")
     private long id;
 
@@ -23,6 +22,8 @@ public class User {
     private String password;
 
     private ArrayList<String> recipeList;
+    // TODO:
+    // Find some way to store this kind of relation in DB
 
     public User() {
 
