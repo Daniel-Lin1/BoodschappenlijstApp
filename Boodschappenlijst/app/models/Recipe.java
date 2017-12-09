@@ -19,7 +19,7 @@ public class Recipe {
     @Column(name = "secret")
     private boolean secret;
 
-    private List<Necessity> necessities;
+   // private List<Necessity> necessities;
 
     public Recipe() {
 
@@ -63,11 +63,11 @@ public class Recipe {
         this.secret = secret;
     }
 
-    public List<Necessity> getNecessities() {
+   /* public List<Necessity> getNecessities() {
         return necessities;
     }
 
     public void setNecessities(List<Necessity> necessities) {
         this.necessities = necessities;
-    }
+    } */
 }
