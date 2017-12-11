@@ -25,15 +25,15 @@ public class Application extends Controller {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("defaultPersistenceUnit");
        // EntityManager em = jpaApi.em();
 
-       // User user = new User("harry", "harry@live.nl", "hallo123");
+        User user = new User("harry", "harry@live.nl", "hallo123");
         Recipe recipe = new Recipe("Rijst", "De perfecte rijst voor bodybuilders!", false);
-      //  Ingredient ingredient = new Ingredient("Water", 20, "water.pjg", Measurement.ml);
-       // Kitchenware kitchenware = new Kitchenware("Vork");
+        Ingredient ingredient = new Ingredient("Water", 20, "water.pjg", Measurement.ml);
+        Kitchenware kitchenware = new Kitchenware("Vork");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         entityManager.getTransaction().begin();
 
-        entityManager.persist(recipe);
+        entityManager.persist(user);
         // TODO:
         // De recipe klasse persisten lukt niet, zou je hier naar kunnen kijken,
         // waarom hij een error geeft?
