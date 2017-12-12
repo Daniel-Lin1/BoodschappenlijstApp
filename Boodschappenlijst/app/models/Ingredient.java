@@ -1,5 +1,6 @@
 package models;
 
+import javax.annotation.Generated;
 import javax.persistence.*;
 
 @Entity

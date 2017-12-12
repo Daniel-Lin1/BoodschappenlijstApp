@@ -6,8 +6,8 @@ import java.util.List;
 @Entity
 @Table(name = "recipe")
 public class Recipe {
-    @Id @GeneratedValue
-    @Column(name = "id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "name")

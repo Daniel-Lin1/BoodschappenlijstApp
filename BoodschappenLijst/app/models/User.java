@@ -7,9 +7,12 @@ import java.util.ArrayList;
 
 @Entity
 @Table(name = "user")
+@NamedQueries({
+        @NamedQuery(name = "User.getAll", query = "select u from User as u")
+})
 public class User {
-    @Id @GeneratedValue
-    @Column(name = "id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "username")

@@ -1,25 +1,27 @@
-name := "boodschappenlijst"
- 
-version := "1.0" 
-      
-lazy val `boodschappenlijst` = (project in file(".")).enablePlugins(PlayJava)
+import play.sbt.PlayJava
 
-resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
-      
-scalaVersion := "2.11.11"
+resolvers += Resolver.url("Typesafe Ivy releases", url("https://repo.typesafe.com/typesafe/ivy-releases"))(Resolver.ivyStylePatterns)
 
-libraryDependencies ++= Seq( javaJdbc , cache , javaWs )
+name := """play-java-jpa"""
 
-unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )
+version := "1.0-SNAPSHOT"
 
-libraryDependencies ++= Seq(
-  "com.adrianhurt" %% "play-bootstrap" % "1.1.1-P25-B4"
-)
+lazy val root = (project in file(".")).enablePlugins(PlayJava)
 
-// https://mvnrepository.com/artifact/mysql/mysql-connector-java
-libraryDependencies += "mysql" % "mysql-connector-java" % "5.1.16"
+scalaVersion := "2.11.7"
 
 libraryDependencies ++= Seq(
   javaJpa,
-  "org.hibernate" % "hibernate-entitymanager" % "5.1.0.Final" // replace by your jpa implementation
+  cache,
+  javaWs,
+  "org.hibernate" % "hibernate-entitymanager" % "5.2.5.Final" exclude("dom4j", "dom4j"),
+  "mysql" % "mysql-connector-java" % "6.0.5",
+  "com.adrianhurt" %% "play-bootstrap" % "1.1.1-P25-B4",
+"dom4j" % "dom4j" % "1.6.1" intransitive()
 )
+
+libraryDependencies += evolutions
+
+fork in run := true
+
+javaOptions in Test += "-Dconfig.file=conf/application.test.conf"

@@ -6,12 +6,14 @@ import play.db.jpa.JPAApi;
 import play.mvc.*;
 
 import views.html.*;
+import views.html.shared.getResults;
 import views.html.shared.index;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class Application extends Controller {
   //  private JPAApi jpaApi;
@@ -21,15 +23,16 @@ public class Application extends Controller {
         this.jpaApi = api;
     } */
 
+    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("defaultPersistenceUnit");
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+
     public Result index() {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("defaultPersistenceUnit");
        // EntityManager em = jpaApi.em();
 
         User user = new User("harry", "harry@live.nl", "hallo123");
         Recipe recipe = new Recipe("Rijst", "De perfecte rijst voor bodybuilders!", false);
         Ingredient ingredient = new Ingredient("Water", 20, "water.pjg", Measurement.ml);
         Kitchenware kitchenware = new Kitchenware("Vork");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         entityManager.getTransaction().begin();
 
@@ -41,6 +44,17 @@ public class Application extends Controller {
 
         entityManagerFactory.close();
         return ok(index.render());
+    }
+
+    public Result getResults() {
+        entityManager.getTransaction().begin();
+        List<User> users = findAll();
+        return ok(getResults.render(users));
+    }
+
+    public List<User> findAll() {
+        return entityManager.createNamedQuery("User.getAll", User.class)
+                .getResultList();
     }
 
 }
