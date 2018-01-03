@@ -23,9 +23,6 @@ public class AccountController {
     public AccountController(FormFactory formFactory) {
         this.formFactory = formFactory;
         this.form = formFactory.form(User.class);
-
-        c.connect();
-
     }
 
     public Result login(){
