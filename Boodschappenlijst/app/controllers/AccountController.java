@@ -1,17 +1,22 @@
 package controllers;
 
 import dal.DBConnector;
+import dal.repositories.UserRepo;
+import models.Secured;
 import models.User;
 import models.dal.repositories.UserRepo;
 import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Result;
+import play.mvc.Security;
 import views.html.account.login;
 
 import javax.inject.Inject;
 
+import static play.mvc.Controller.session;
 import static play.mvc.Results.badRequest;
 import static play.mvc.Results.ok;
+import static play.mvc.Results.redirect;
 
 public class AccountController {
     private Form<User> form;
@@ -39,15 +44,16 @@ public class AccountController {
         return ok("Ingelogd bitch");
     }
 
+    @Security.Authenticated(Secured.class)
     private Result login(String username, String password){
-        if(userRepo.login(email, password)){
+        if(userRepo.login(username, password)){
             session().clear();
             if(previousUrl != null) {
                 session("previousUrl", previousUrl);
             } else {
                 session("previousUrl", "/");
             }
-            session("email", email);
+            session("email", username);
 
             return redirect(session().get("previousUrl"));
         }

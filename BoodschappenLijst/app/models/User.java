@@ -8,7 +8,8 @@ import java.util.ArrayList;
 @Entity
 @Table(name = "user")
 @NamedQueries({
-        @NamedQuery(name = "User.getAll", query = "select u from User as u")
+        @NamedQuery(name = "User.getAll", query = "select u from User as u"),
+        @NamedQuery(name = "User.login", query = "select u from User as u where u.username = :username and u.password = : password")
 })
 public class User {
     @Id
