@@ -2,6 +2,7 @@ package controllers;
 
 import dal.DBConnector;
 import models.User;
+import models.dal.repositories.UserRepo;
 import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Result;
@@ -16,6 +17,7 @@ public class AccountController {
     private Form<User> form;
     private FormFactory formFactory;
     private DBConnector c = new DBConnector();
+    private UserRepo userRepo = new UserRepo();
 
     @Inject
     public AccountController(FormFactory formFactory) {
@@ -38,6 +40,21 @@ public class AccountController {
             return badRequest(login.render(form));
         }
         return ok("Ingelogd bitch");
+    }
+
+    private Result login(String username, String password){
+        if(userRepo.login(email, password)){
+            session().clear();
+            if(previousUrl != null) {
+                session("previousUrl", previousUrl);
+            } else {
+                session("previousUrl", "/");
+            }
+            session("email", email);
+
+            return redirect(session().get("previousUrl"));
+        }
+        return badRequest(login.render(REGISTER, Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), form2, true));
     }
 
 }
