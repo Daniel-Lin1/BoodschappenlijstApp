@@ -45,7 +45,7 @@ public class AccountController {
     }
 
     @Security.Authenticated(Secured.class)
-    private Result login(String username, String password){
+    private Result login(String username, String password, String previousUrl){
         if(userRepo.login(username, password)){
             session().clear();
             if(previousUrl != null) {
@@ -57,7 +57,22 @@ public class AccountController {
 
             return redirect(session().get("previousUrl"));
         }
-        return badRequest(login.render(REGISTER, Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), form2, true));
+        return badRequest(login.render());
+    }
+
+    public Result register(){
+        return ok(registerform.render());
+    }
+
+    public Result submitRegister(){
+        Form<User>filledForm = form.bindFromRequest();
+        User newUser = filledForm.get();
+        boolean registerResult = userRepo.register(newUser);
+
+        if(registerResult!= false){
+
+        }
+        return redirect()
     }
 
 }

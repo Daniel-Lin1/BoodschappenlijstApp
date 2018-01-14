@@ -1,6 +1,7 @@
 package models;
 
 import org.hibernate.annotations.GenericGenerator;
+import play.data.validation.Constraints;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,16 +15,22 @@ import java.util.ArrayList;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Constraints.Required
     private long id;
 
     @Column(name = "username")
+    @Constraints.Required
     private String username;
 
     @Column(name = "email")
+    @Constraints.Required
     private String email;
 
     @Column(name = "password")
+    @Constraints.Required
     private String password;
+
+
 
     private ArrayList<String> recipeList;
     // TODO:

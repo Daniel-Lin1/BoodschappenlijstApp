@@ -1,0 +1,22 @@
+@import b4.vertical.fieldConstructor
+@(form: Form[User])
+@shared.main("register"){
+
+  <div id="container">
+    <div class="row col-lg-12">
+      <b1>Registreren</b1>
+    </div>
+    @b4.form(routes.AccountController.submitRegister()){
+      @b4.text(form("username"), '_label -> "Gebruikersnaam :", 'class -> "form-control-inline", 'placeholder -> "Gebruikersnaam")
+      @b4.text(form("email"), '_label -> "Email :", 'class -> "form-control-inline", 'placeholder -> "voorbeeld@voorbeeld.com")
+      @b4.text(form("password"), '_label -> "Wachtwoord :", 'class -> "form-control-inline", 'placeholder -> "wachtwoord")
+
+      <div class="row">
+        @b4.submit('class ->"btn btn-primary"){Registreren}
+        @helper.CSRF.formField
+      </div>
+
+    }
+  </div>
+
+}
