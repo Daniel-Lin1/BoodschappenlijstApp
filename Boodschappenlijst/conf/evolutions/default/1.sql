@@ -1,5 +1,5 @@
 # --- !Ups
-create table ingredient
+/* create table ingredient
 (
 	id bigint not null AUTO_INCREMENT
 		primary key,
@@ -7,6 +7,14 @@ create table ingredient
 	image varchar(255) null,
 	measurement int null,
 	volume int null
+);
+create table recipe
+(
+	id bigint not null AUTO_INCREMENT
+		primary key,
+	name varchar(255) null,
+	procedure varchar(255) null,
+	secret BOOLEAN null
 );
 create table kitchenware
 (
@@ -29,4 +37,4 @@ create table user
 drop table if exists ingredient;
 drop table if exists `user`;
 drop table if exists kitchenware;
-
+*/

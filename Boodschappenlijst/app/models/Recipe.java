@@ -19,7 +19,9 @@ public class Recipe {
     @Column(name = "secret")
     private boolean secret;
 
-   // private List<Necessity> necessities;
+   /* @OneToMany
+    @JoinColumn(name = "post_id")
+    private List<Necessity> necessities; */
 
     public Recipe() {
 

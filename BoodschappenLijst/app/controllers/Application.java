@@ -1,8 +1,11 @@
 package controllers;
 
+import dal.repositories.DatabaseExecutionContext;
+import dal.repositories.JPARecipeRepository;
+import dal.repositories.JPAUserRepository;
 import models.*;
-import play.*;
 import play.db.jpa.JPAApi;
+import play.db.jpa.Transactional;
 import play.mvc.*;
 
 import views.html.*;
@@ -16,45 +19,41 @@ import javax.persistence.Persistence;
 import java.util.List;
 
 public class Application extends Controller {
-  //  private JPAApi jpaApi;
+    private JPAUserRepository userRepo;
+    private JPARecipeRepository recipeRepo;
 
-   /* @Inject
-    public Application(JPAApi api) {
-        this.jpaApi = api;
-    } */
+    @Inject
+    public Application(JPAUserRepository userRepo, JPARecipeRepository recipeRepo) {
+        this.userRepo = userRepo;
+        this.recipeRepo = recipeRepo;
+    }
 
-    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("defaultPersistenceUnit");
-    EntityManager entityManager = entityManagerFactory.createEntityManager();
-
+    @Transactional
     public Result index() {
-       // EntityManager em = jpaApi.em();
-
         User user = new User("harry", "harry@live.nl", "hallo123");
         Recipe recipe = new Recipe("Rijst", "De perfecte rijst voor bodybuilders!", false);
         Ingredient ingredient = new Ingredient("Water", 20, "water.pjg", Measurement.ml);
         Kitchenware kitchenware = new Kitchenware("Vork");
 
-        entityManager.getTransaction().begin();
+        userRepo.add(user);
+        recipeRepo.add(recipe);
 
-        entityManager.persist(user);
         // TODO:
         // De recipe klasse persisten lukt niet, zou je hier naar kunnen kijken,
         // waarom hij een error geeft?
-        entityManager.getTransaction().commit();
 
-        entityManagerFactory.close();
         return ok(index.render());
     }
 
     public Result getResults() {
-        entityManager.getTransaction().begin();
-        List<User> users = findAll();
-        return ok(getResults.render(users));
+        List<User> users = userRepo.list();
+        List<Recipe> recipes = recipeRepo.list();
+        return ok(getResults.render(users, recipes));
     }
 
-    public List<User> findAll() {
+    /*public List<User> findAll() {
         return entityManager.createNamedQuery("User.getAll", User.class)
                 .getResultList();
-    }
+    } */
 
 }

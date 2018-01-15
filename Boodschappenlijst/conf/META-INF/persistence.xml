@@ -18,6 +18,9 @@
         <non-jta-data-source>DefaultDS</non-jta-data-source>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <!-- Property below is needed to let hibernate create tables automatically
+            if they don't exist !-->
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
         </properties>
     </persistence-unit>
 

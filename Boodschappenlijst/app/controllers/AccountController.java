@@ -1,6 +1,5 @@
 package controllers;
 
-import dal.DBConnector;
 import models.User;
 import play.data.Form;
 import play.data.FormFactory;
@@ -15,7 +14,6 @@ import static play.mvc.Results.ok;
 public class AccountController {
     private Form<User> form;
     private FormFactory formFactory;
-    private DBConnector c = new DBConnector();
 
     @Inject
     public AccountController(FormFactory formFactory) {
