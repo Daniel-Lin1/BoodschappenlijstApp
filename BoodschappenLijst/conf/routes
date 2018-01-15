@@ -6,6 +6,7 @@
 GET     /                           controllers.Application.index
 
 GET     /account/login              controllers.AccountController.login
+GET     /account/logout             controllers.AccountController.logout
 POST    /account/login              controllers.AccountController.authenticate
 
 GET     /getResults                 controllers.Application.getResults

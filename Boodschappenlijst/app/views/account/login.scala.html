@@ -1,15 +1,16 @@
 @import play.data.Form
 @import b4.vertical.fieldConstructor
 
-@(form: Form[User])
+@(form: Form[User], user: User)
 
-@shared.main("Inloggen") {
+@shared.main("Inloggen", user) {
   <div class="container">
     <h1>Inloggen</h1>
     @b4.form(routes.AccountController.authenticate()) {
       <table>
+        @helper.CSRF.formField
         <tr><p>Gebruikersnaam</p></tr>
-        <tr>@b4.text(form("userName"), 'label -> "Email", 'placeholder -> "Gebruikersnaam", 'required -> "required")</tr>
+        <tr>@b4.text(form("username"), 'label -> "Email", 'placeholder -> "Gebruikersnaam", 'required -> "required")</tr>
         <tr><p>Email</p></tr>
         <tr>@b4.text(form("email"), 'label -> "Email", 'placeholder -> "E-mailadres", 'required -> "required")</tr>
         <tr><p>Wachtwoord</p></tr>

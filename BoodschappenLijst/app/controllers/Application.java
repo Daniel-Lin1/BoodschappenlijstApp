@@ -1,21 +1,15 @@
 package controllers;
 
-import dal.repositories.DatabaseExecutionContext;
 import dal.repositories.JPARecipeRepository;
 import dal.repositories.JPAUserRepository;
 import models.*;
-import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
 import play.mvc.*;
 
-import views.html.*;
 import views.html.shared.getResults;
 import views.html.shared.index;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.util.List;
 
 public class Application extends Controller {
@@ -42,7 +36,7 @@ public class Application extends Controller {
         // De recipe klasse persisten lukt niet, zou je hier naar kunnen kijken,
         // waarom hij een error geeft?
 
-        return ok(index.render());
+        return ok(index.render(userRepo.getUserByUsername(session("user"))));
     }
 
     public Result getResults() {
