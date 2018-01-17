@@ -1,28 +1,28 @@
 package controllers;
 
 import dal.DBConnector;
+import dal.contexts.UserContext;
 import dal.repositories.UserRepo;
 import models.Secured;
 import models.User;
-import models.dal.repositories.UserRepo;
 import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Result;
 import play.mvc.Security;
 import views.html.account.login;
+import views.html.account.registerform;
+import views.html.shared.index;
 
 import javax.inject.Inject;
 
 import static play.mvc.Controller.session;
-import static play.mvc.Results.badRequest;
-import static play.mvc.Results.ok;
-import static play.mvc.Results.redirect;
+import static play.mvc.Results.*;
 
 public class AccountController {
     private Form<User> form;
     private FormFactory formFactory;
     private DBConnector c = new DBConnector();
-    private UserRepo userRepo = new UserRepo();
+    private UserRepo userRepo = new UserRepo(new UserContext());
 
     @Inject
     public AccountController(FormFactory formFactory) {
@@ -32,6 +32,10 @@ public class AccountController {
 
     public Result login(){
         return ok(login.render(form));
+    }
+
+    public Result loginRedirect(){
+        return ok(index.render());
     }
 
     public Result authenticate() {
@@ -57,11 +61,11 @@ public class AccountController {
 
             return redirect(session().get("previousUrl"));
         }
-        return badRequest(login.render());
+        return badRequest(login.render(null));
     }
 
     public Result register(){
-        return ok(registerform.render());
+        return ok(registerform.render(form));
     }
 
     public Result submitRegister(){
@@ -72,7 +76,7 @@ public class AccountController {
         if(registerResult!= false){
 
         }
-        return redirect()
+        return redirect(routes.AccountController.login());
     }
 
 }

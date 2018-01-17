@@ -17,4 +17,6 @@ public class UserRepo{
     }
 
     public boolean register(User newUser){return userContext.register(newUser);}
+
+    public User getUser(String user) { return null;}
 }
