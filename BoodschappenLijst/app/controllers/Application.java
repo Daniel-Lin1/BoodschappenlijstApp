@@ -1,9 +1,11 @@
 package controllers;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import dal.repositories.JPARecipeRepository;
 import dal.repositories.JPAUserRepository;
 import models.*;
 import play.db.jpa.Transactional;
+import play.libs.Json;
 import play.mvc.*;
 
 import views.html.shared.getResults;
@@ -50,4 +52,9 @@ public class Application extends Controller {
                 .getResultList();
     } */
 
+    public Result getResultsJsonFormat(){
+        List<User> users = userRepo.list();
+        JsonNode node = Json.toJson(users);
+        return ok(node);
+    }
 }
