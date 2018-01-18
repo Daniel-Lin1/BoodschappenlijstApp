@@ -1,0 +1,18 @@
+@import play.data.Form
+@import b4.vertical.fieldConstructor
+
+@(form: Form[Recipe], user: User)
+@shared.main("Nieuw Recept", user){
+    <div class="container">
+    @b4.form(routes.RecipeController.submit()) {
+        <div class="row">@b4.text(form("name"), '_label -> "Naam :", 'class -> "form-control-inline", 'placeholder -> "Rijst")</div>
+        <div class="row">@b4.text(form("procedure"), '_label -> "Bereidingswijze :", 'class -> "form-control-inline", 'placeholder -> "Stomen")</div>
+        <div class="row">
+            @b4.submit('class -> "btn btn-primary") { Toevoegen }
+            @helper.CSRF.formField
+        </div>
+    </div>
+
+    }
+}
+

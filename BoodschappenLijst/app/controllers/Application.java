@@ -27,7 +27,7 @@ public class Application extends Controller {
     @Transactional
     public Result index() {
         User user = new User("harry", "harry@live.nl", "hallo123");
-        Recipe recipe = new Recipe("Rijst", "De perfecte rijst voor bodybuilders!", false);
+        Recipe recipe = new Recipe("Rijst", "De perfecte rijst voor bodybuilders!");
         Ingredient ingredient = new Ingredient("Water", 20, "water.pjg", Measurement.ml);
         Kitchenware kitchenware = new Kitchenware("Vork");
 
@@ -53,8 +53,8 @@ public class Application extends Controller {
     } */
 
     public Result getResultsJsonFormat(){
-        List<User> users = userRepo.list();
-        JsonNode node = Json.toJson(users);
+        List<Recipe> recipes = recipeRepo.list();
+        JsonNode node = Json.toJson(recipes);
         return ok(node);
     }
 }

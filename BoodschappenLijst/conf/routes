@@ -9,6 +9,9 @@ GET     /account/login              controllers.AccountController.login
 GET     /account/logout             controllers.AccountController.logout
 POST    /account/login              controllers.AccountController.authenticate
 
+GET     /recipe/newrecipe           controllers.RecipeController.addRecipe
+POST    /recipe/submitrecipe        controllers.RecipeController.submit
+
 GET     /getResults                 controllers.Application.getResults
 GET     /getResultsJsonFormat       controllers.Application.getResultsJsonFormat
 

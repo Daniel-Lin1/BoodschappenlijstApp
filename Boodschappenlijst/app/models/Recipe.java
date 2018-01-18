@@ -16,8 +16,6 @@ public class Recipe {
     @Column(name = "procedure")
     private String procedure;
 
-    @Column(name = "secret")
-    private boolean secret;
 
    /* @OneToMany
     @JoinColumn(name = "post_id")
@@ -27,10 +25,9 @@ public class Recipe {
 
     }
 
-    public Recipe(String name, String procedure, boolean secret) {
-        this.name = name;
+    public Recipe(String name, String procedure) {
         this.procedure = procedure;
-        this.secret = secret;
+        this.name = name;
     }
 
     public long getId() {
@@ -55,14 +52,6 @@ public class Recipe {
 
     public void setProcedure(String procedure) {
         this.procedure = procedure;
-    }
-
-    public boolean isSecret() {
-        return secret;
-    }
-
-    public void setSecret(boolean secret) {
-        this.secret = secret;
     }
 
    /* public List<Necessity> getNecessities() {
