@@ -43,8 +43,8 @@ public class RecipeController extends Controller{
         String name = form2.get("name");
         String procedure = form2.get("procedure");
 
-        name = Encryptor.Encrypt(name, "XMzDdG4D03CKm2IxIWQw7g==");
-        procedure = Encryptor.Encrypt(procedure, "XMzDdG4D03CKm2IxIWQw7g==");
+        name = Encryptor.Encrypt(name, "ebSI2H6uJvJjqC8v111CrG");
+        procedure = Encryptor.Encrypt(procedure, "ebSI2H6uJvJjqC8v111CrG");
 
         Recipe recipe = new Recipe(name, procedure);
         recipeRepo.add(recipe);

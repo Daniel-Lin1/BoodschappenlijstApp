@@ -23,7 +23,7 @@ public class Main {
         String result;
         while((result = br.readLine()) != null){
             System.out.println(result);
-            String decryptedRecipe = Encryptor.Decrypt(result, "XMzDdG4D03CKm2IxIWQw7g==");
+            String decryptedRecipe = Encryptor.Decrypt(result, "ebSI2H6uJvJjqC8v111CrG");
             System.out.println(decryptedRecipe);
         }
         conn.disconnect();
